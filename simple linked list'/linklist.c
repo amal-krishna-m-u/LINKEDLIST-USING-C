@@ -93,7 +93,7 @@ void bnode()//inputing nodes before first node
     scanf("%d",&nnode->info);
     printf("\n%d is inputed before the first node \n\n",nnode->info);
 }
-void enode()
+void enode()//Add a new node at the end of the list
 {
 
 
