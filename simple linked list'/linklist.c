@@ -186,7 +186,7 @@ void dis()//traversal
 
 void search()//searching function
 {
-    int i=1,s;
+    int i=1,s,c=0;
     printf("Input the data that need to be searched\n");
     scanf("%d",&s);
 while(temp!=NULL)
@@ -195,13 +195,14 @@ while(temp!=NULL)
     if(temp->info==s)
     {
      printf("\n %d is available in the list in node no.:-%d \n",s,i);
-
-
-    return;
+     c++;
     }
     temp=temp->link;
     i++;
 }
+if(c==0)
+{
    printf("\n %d is not available in the list \n",s);
-
+}
+   temp=first;
 }
