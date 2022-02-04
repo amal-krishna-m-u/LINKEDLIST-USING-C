@@ -10,7 +10,7 @@
 
 node *temp,*first,*end;
 node*nnode;
-node*newnode,*btnode;
+node*newnode;
  
  void alloc();
  void nod();
@@ -60,7 +60,6 @@ printf("First node already inputed,exit before creating new list \n");
         case 8:
         free(nnode);
         free(newnode);
-        free(btnode);
         printf("\nEXITED\n");
         return;
         break;
@@ -143,10 +142,8 @@ printf("\n A new node is added in the end\n");
 void btwnode()//to add node before a node
 {
     int s,i=0;
- btnode=(node*)malloc(sizeof(node));
-   printf("Input the data\n\n");
-    scanf("%d",&btnode->info);
-
+    alloc();
+    nod();
   
     printf("Iput the data of node after  which you need to input new node\n");
     scanf("%d",&s);
@@ -154,8 +151,8 @@ void btwnode()//to add node before a node
 {
     if(temp->info==s)
     {
-   btnode->link=temp->link;
-   temp->link=btnode;
+   nnode->link=temp->link;
+   temp->link=nnode;
    printf("New node is added after %d",s);
     }
     temp=temp->link;
@@ -168,11 +165,6 @@ if(i=0)
 temp=first;
 
 }
-
-
-
-
-
 
 
 void dis()//traversal
