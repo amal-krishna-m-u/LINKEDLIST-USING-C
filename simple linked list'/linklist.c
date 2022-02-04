@@ -7,10 +7,13 @@
  struct Node*link;
 
  }node;
-node *temp,*first;
-    node*nnode;
-    node*newnode;
+
+node *temp,*first,*end;
+node*nnode;
+node*newnode;
+
  void cnode();
+ void nod();
  void bnode();
  void enode();
  void search();
@@ -43,9 +46,9 @@ printf("First node already inputed,exit before creating new list \n");
         break;
         case  2:bnode();
         break;
-          /*case  3:enode();
+        case 3:enode();
         break;
-        case  4:btwnode();
+        /*case  4:btwnode();
         break;*/
         case  5:dis();
         break;
@@ -59,18 +62,30 @@ printf("First node already inputed,exit before creating new list \n");
         printf("\nEXITED\n");
         return;
         break;
-    }
+    }//end of switch 
 
 
 }
 
 else
 {
-    printf("\nInvalid input\n");//invalid selection
+    printf("\nInvalid input,reenter a new value\n");//invalid selection
 
+}//end of if else
+}//end of while loop
+}//end of main function
+
+
+
+
+void nod()//node data insertion
+{
+    printf("INput the data\n\n");
+    scanf("%d",&nnode->info);
 }
-}
-}
+
+
+
 
  void cnode()//creating the first node/list
  {
@@ -80,8 +95,13 @@ printf("Input the integer\n");
 scanf("%d",&newnode->info);
 newnode->link=NULL;
 temp=first;
-printf("\n%d is inputed as the first node \n",newnode->info);
+printf("\n A node is created \n",newnode->info);
+end=newnode;
      }
+
+
+
+
 
 void bnode()//inputing nodes before first node
 {
@@ -89,15 +109,26 @@ void bnode()//inputing nodes before first node
     nnode->link=first;
     first=nnode;
     temp=first;
-    printf("Input the integer\n");
-    scanf("%d",&nnode->info);
-    printf("\n%d is inputed before the first node \n\n",nnode->info);
+    nod();
+    printf("\nA new node is added in the begining \n\n",nnode->info);
 }
+
+
+
 void enode()//Add a new node at the end of the list
 {
-
+nnode=(node*)malloc(sizeof(node));
+nnode->link=NULL;
+nod();
+end->link=nnode;
+end=nnode;
+temp=first;//if i don't add this statement here ,data won't be printed the second time when we Use endnode fuction ,updation is not possible .
+printf("\n A new node is added in the end\n");
 
 }
+
+
+
 void dis()//traversal
 {
     int i=1;
