@@ -8,7 +8,7 @@
 
  }node;
 
-node *temp,*first,*end;
+node *temp,*first,*end,*de;
 node*nnode;
 node*newnode;
  
@@ -20,6 +20,7 @@ node*newnode;
  void search();
  void btwnode();
  void dis();
+ void del();
  
  void main() 
 {
@@ -55,8 +56,8 @@ printf("First node already inputed,exit before creating new list \n");
         break;
         case  6:search();
         break;
-       /* case 7:del();
-        break;*/
+       case 7:del();
+        break;
         case 8:
         free(nnode);
         free(newnode);
@@ -81,6 +82,11 @@ else
 
 void nod()//node data insertion
 {
+    if(nnode==NULL)
+    {
+        printf("stack overflow\n");
+        return;
+    }
     printf("Input the data\n\n");
     scanf("%d",&nnode->info);
 }
@@ -96,9 +102,14 @@ void alloc()//dynamic memeory allocation of nnodes
 
 
 
- void cnode()//creating the first node/list
+ void cnode()//creating the first node/list *first choice
  {
 newnode=(node*)malloc(sizeof(node));
+if(newnode==NULL)
+{
+    printf("stack overflow \n");
+    return;
+}
 first=newnode;
 printf("Input the integer\n");
 scanf("%d",&newnode->info);
@@ -112,7 +123,7 @@ end=newnode;
 
 
 
-void bnode()//inputing nodes before first node
+void bnode()//inputing nodes before first node *second choice
 {
     alloc();
     nnode->link=first;
@@ -124,7 +135,7 @@ void bnode()//inputing nodes before first node
 
 
 
-void enode()//Add a new node at the end of the list
+void enode()//Add a new node at the end of the list *third choice
 {
  alloc();
 nnode->link=NULL;
@@ -139,7 +150,7 @@ printf("\n A new node is added in the end\n");
 
 
 
-void btwnode()//to add node before a node
+void btwnode()//to add node before a node *fourth choice
 {
     int s,i=0;
     alloc();
@@ -167,7 +178,7 @@ temp=first;
 }
 
 
-void dis()//traversal
+void dis()//traversal *5 th choice
 {
     int i=1;
     printf("\n********Linked List******\n");
@@ -184,7 +195,7 @@ void dis()//traversal
 
 
 
-void search()//searching function
+void search()//searching function *6th choice
 {
     int i=1,s,c=0;
     printf("Input the data that need to be searched\n");
@@ -205,4 +216,47 @@ if(c==0)
    printf("\n %d is not available in the list \n",s);
 }
    temp=first;
+}
+
+void del() //*7th choice
+{
+   int i=1,d,c=0;
+    printf("Input the data that need to be removed\n");
+    scanf("%d",&d);
+
+
+    // If first node itself holds the data to be deleted
+    if (temp != NULL && temp->info == d)
+     {
+        first = temp->link; 
+        printf("The first node is removed\n");
+        temp=first;
+        return;
+    }
+ 
+ 
+    while ((temp != NULL) && (temp->info!= d))
+     {
+        de = temp;
+        temp = temp->link;
+       
+    }
+ 
+   
+    if((temp!= NULL) && (temp->info= d))
+     {
+       
+    de->link = temp->link;
+       printf("Node removed\n");
+
+     }
+
+
+    if (temp == NULL)
+    {
+    printf("The data is not available to remove\n");
+
+    }
+     
+    temp=first;
 }
