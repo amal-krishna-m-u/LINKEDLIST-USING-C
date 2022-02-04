@@ -10,10 +10,11 @@
 
 node *temp,*first,*end;
 node*nnode;
-node*newnode;
-
- void cnode();
+node*newnode,*btnode;
+ 
+ void alloc();
  void nod();
+ void cnode();
  void bnode();
  void enode();
  void search();
@@ -48,17 +49,18 @@ printf("First node already inputed,exit before creating new list \n");
         break;
         case 3:enode();
         break;
-        /*case  4:btwnode();
-        break;*/
+        case  4:btwnode();
+        break;
         case  5:dis();
         break;
-        /*case  6:search();
+        case  6:search();
         break;
-        case 7:del();
+       /* case 7:del();
         break;*/
         case 8:
         free(nnode);
         free(newnode);
+        free(btnode);
         printf("\nEXITED\n");
         return;
         break;
@@ -80,8 +82,16 @@ else
 
 void nod()//node data insertion
 {
-    printf("INput the data\n\n");
+    printf("Input the data\n\n");
     scanf("%d",&nnode->info);
+}
+
+
+
+
+void alloc()//dynamic memeory allocation of nnodes
+{
+    nnode=(node*)malloc(sizeof(node));
 }
 
 
@@ -105,7 +115,7 @@ end=newnode;
 
 void bnode()//inputing nodes before first node
 {
-    nnode=(node*)malloc(sizeof(node));
+    alloc();
     nnode->link=first;
     first=nnode;
     temp=first;
@@ -117,7 +127,7 @@ void bnode()//inputing nodes before first node
 
 void enode()//Add a new node at the end of the list
 {
-nnode=(node*)malloc(sizeof(node));
+ alloc();
 nnode->link=NULL;
 nod();
 end->link=nnode;
@@ -126,6 +136,42 @@ temp=first;//if i don't add this statement here ,data won't be printed the secon
 printf("\n A new node is added in the end\n");
 
 }
+
+
+
+
+void btwnode()//to add node before a node
+{
+    int s,i=0;
+ btnode=(node*)malloc(sizeof(node));
+   printf("Input the data\n\n");
+    scanf("%d",&btnode->info);
+
+  
+    printf("Iput the data of node after  which you need to input new node\n");
+    scanf("%d",&s);
+   while(temp!=NULL)
+{
+    if(temp->info==s)
+    {
+   btnode->link=temp->link;
+   temp->link=btnode;
+   printf("New node is added after %d",s);
+    }
+    temp=temp->link;
+    i++;
+}
+if(i=0)
+{
+   printf("\n %d is not available in the list \n",s);
+}
+temp=first;
+
+}
+
+
+
+
 
 
 
@@ -139,4 +185,31 @@ void dis()//traversal
          temp=temp->link;
          i++;
      }
+   temp=first;
+}
+
+
+
+
+
+void search()//searching function
+{
+    int i=1,s;
+    printf("Input the data that need to be searched\n");
+    scanf("%d",&s);
+while(temp!=NULL)
+{
+    printf("Searching......>\n\n");
+    if(temp->info==s)
+    {
+     printf("\n %d is available in the list in node no.:-%d \n",s,i);
+
+
+    return;
+    }
+    temp=temp->link;
+    i++;
+}
+   printf("\n %d is not available in the list \n",s);
+
 }
