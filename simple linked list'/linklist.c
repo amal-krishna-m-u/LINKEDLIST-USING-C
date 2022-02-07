@@ -7,12 +7,11 @@
  struct Node*link;
 
  }node;
-
 node *temp,*first,*end,*de;
 node*nnode;
 node*newnode;
  
- void alloc();
+  void alloc();
  void nod();
  void cnode();
  void bnode();
@@ -37,7 +36,8 @@ if((n>0)&&(n<9))
     switch (n)
     {
         case  1:
-        if(count==0){
+        if(count==0)
+        {
         
         cnode();
         count++;
@@ -77,9 +77,6 @@ else
 }//end of while loop
 }//end of main function
 
-
-
-
 void nod()//node data insertion
 {
     if(nnode==NULL)
@@ -91,10 +88,7 @@ void nod()//node data insertion
     scanf("%d",&nnode->info);
 }
 
-
-
-
-void alloc()//dynamic memeory allocation of nnodes
+void alloc()//dynamic memory allocation of nnodes
 {
     nnode=(node*)malloc(sizeof(node));
 }
@@ -114,7 +108,6 @@ void dealloc()//function to deallocate dynamically allocated memory;
     printf("Node %d is removed \n",i);
 }
 
-
  void cnode()//creating the first node/list *first choice
  {
 newnode=(node*)malloc(sizeof(node));
@@ -132,10 +125,6 @@ printf("A node is created \n",newnode->info);
 end=newnode;
      }
 
-
-
-
-
 void bnode()//inputing nodes before first node *second choice
 {
     alloc();
@@ -145,8 +134,6 @@ void bnode()//inputing nodes before first node *second choice
     nod();
     printf("A new node is added in the begining\n",nnode->info);
 }
-
-
 
 void enode()//Add a new node at the end of the list *third choice
 {
@@ -159,9 +146,6 @@ temp=first;//if i don't add this statement here ,data won't be printed the secon
 printf("\n A new node is added in the end\n");
 
 }
-
-
-
 
 void btwnode()//to add node before a node *fourth choice
 {
@@ -190,7 +174,6 @@ temp=first;
 
 }
 
-
 void dis()//traversal *5 th choice
 {
     int i=1;
@@ -203,7 +186,6 @@ void dis()//traversal *5 th choice
      }
    temp=first;
 }
-
 
 
 
