@@ -21,6 +21,7 @@ node*newnode;
  void btwnode();
  void dis();
  void del();
+ void dealloc();
  
  void main() 
 {
@@ -59,8 +60,7 @@ printf("First node already inputed,exit before creating new list \n");
        case 7:del();
         break;
         case 8:
-        free(nnode);
-        free(newnode);
+        dealloc();
         printf("\nEXITED\n");
         return;
         break;
@@ -99,7 +99,20 @@ void alloc()//dynamic memeory allocation of nnodes
     nnode=(node*)malloc(sizeof(node));
 }
 
-
+void dealloc()//function to deallocate dynamically allocated memory;
+{
+    int i=1;
+    while(temp->link!= NULL)
+     {
+        first = temp->link; 
+        printf("Node %d is removed\n",i);
+        free(temp);
+        temp=first;
+        i++;
+    }
+    free(temp);
+    printf("Node %d is removed \n",i);
+}
 
 
  void cnode()//creating the first node/list *first choice
@@ -115,7 +128,7 @@ printf("Input the integer\n");
 scanf("%d",&newnode->info);
 newnode->link=NULL;
 temp=first;
-printf("\n A node is created \n",newnode->info);
+printf("A node is created \n",newnode->info);
 end=newnode;
      }
 
@@ -130,7 +143,7 @@ void bnode()//inputing nodes before first node *second choice
     first=nnode;
     temp=first;
     nod();
-    printf("\nA new node is added in the begining \n\n",nnode->info);
+    printf("A new node is added in the begining\n",nnode->info);
 }
 
 
@@ -230,7 +243,9 @@ void del() //*7th choice
      {
         first = temp->link; 
         printf("The first node is removed\n");
+        free(temp);
         temp=first;
+
         return;
     }
  
@@ -247,6 +262,7 @@ void del() //*7th choice
      {
        
     de->link = temp->link;
+     free(temp);
        printf("Node removed\n");
 
      }
@@ -257,6 +273,5 @@ void del() //*7th choice
     printf("The data is not available to remove\n");
 
     }
-     
     temp=first;
 }
