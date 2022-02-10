@@ -96,7 +96,7 @@ void alloc()//dynamic memory allocation of nnodes
 void dealloc()//function to deallocate dynamically allocated memory;
 {
     int i=1;
-    while(temp->link!= NULL)
+    while(temp!= NULL)
      {
         first = temp->link; 
         printf("Node %d is removed\n",i);
@@ -105,7 +105,7 @@ void dealloc()//function to deallocate dynamically allocated memory;
         i++;
     }
     free(temp);
-    printf("Node %d is removed \n",i);
+    printf("Linkedlist is Deleted \n");
 }
 
  void cnode()//creating the first node/list *first choice
